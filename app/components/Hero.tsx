@@ -105,7 +105,8 @@ export default function Hero() {
         <div style={{
           position: "absolute", inset: 0, zIndex: 4,
           display: "flex", flexDirection: "column", justifyContent: "center",
-          padding: "0 7vw",
+          width: "100%", maxWidth: "1080px", margin: "0 auto",
+          padding: "0 32px", boxSizing: "border-box",
         }}>
           
 
@@ -156,7 +157,7 @@ export default function Hero() {
         <button
           onClick={back}
           style={{
-            position: "absolute", left: "24px", top: "50%", transform: "translateY(-50%)",
+            position: "absolute", left: "24px", top: "80%", transform: "translateY(-50%)",
             zIndex: 5, background: "rgba(8,6,4,0.5)", border: `1px solid ${GOLD}44`,
             color: GOLD_LIGHT, width: "48px", height: "48px", borderRadius: "2px",
             cursor: "pointer", fontSize: "20px", display: "flex", alignItems: "center", justifyContent: "center",
@@ -176,7 +177,7 @@ export default function Hero() {
         <button
           onClick={next}
           style={{
-            position: "absolute", right: "24px", top: "50%", transform: "translateY(-50%)",
+            position: "absolute", right: "24px", top: "80%", transform: "translateY(-50%)",
             zIndex: 5, background: "rgba(8,6,4,0.5)", border: `1px solid ${GOLD}44`,
             color: GOLD_LIGHT, width: "48px", height: "48px", borderRadius: "2px",
             cursor: "pointer", fontSize: "20px", display: "flex", alignItems: "center", justifyContent: "center",
