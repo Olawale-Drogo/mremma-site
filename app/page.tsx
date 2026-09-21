@@ -1,7 +1,7 @@
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import ProjectCard from "./components/ProjectCard";
 import { projects } from "./data/projects";
-
 
 export default function Home() {
   return (
@@ -19,6 +19,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
