@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
 import { projectSections } from "../data/projects";
@@ -10,8 +10,16 @@ const PROJECTS_PER_CLICK = 2;
 
 export default function Projects() {
   const [visibleProjectCountBySection, setVisibleProjectCountBySection] = useState<Record<string, number>>({});
+  const [scrollTarget, setScrollTarget] = useState<string | null>(null);
 
-  const showMoreProjects = (title: string, totalProjects: number) => {
+  useEffect(() => {
+    if (!scrollTarget) return;
+
+    document.getElementById(scrollTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setScrollTarget(null);
+  }, [scrollTarget, visibleProjectCountBySection]);
+
+  const showMoreProjects = (title: string, totalProjects: number, target: string) => {
     setVisibleProjectCountBySection((current) => {
       const currentCount = current[title] ?? INITIAL_VISIBLE_PROJECTS;
       const nextCount = Math.min(currentCount + PROJECTS_PER_CLICK, totalProjects);
@@ -21,6 +29,7 @@ export default function Projects() {
         [title]: nextCount,
       };
     });
+    setScrollTarget(target);
   };
 
   const showLessProjects = (title: string) => {
@@ -41,7 +50,8 @@ export default function Projects() {
         </header>
 
         <div className="space-y-12">
-          {projectSections.map((section) => {
+          {projectSections.map((section, sectionIndex) => {
+            const sectionId = `project-section-${sectionIndex}`;
             const visibleCount = Math.min(visibleProjectCountBySection[section.title] ?? INITIAL_VISIBLE_PROJECTS, section.projects.length);
             const visibleProjects = section.projects.slice(0, visibleCount);
             const hasMoreProjects = section.projects.length > visibleCount;
@@ -60,7 +70,11 @@ export default function Projects() {
 
                 <div className="grid gap-4 md:grid-cols-2">
                   {visibleProjects.map((project, index) => (
-                    <div key={project.title} className={index === visibleProjects.length - 1 && visibleProjects.length % 2 !== 0 ? "md:col-span-2" : ""}>
+                    <div
+                      key={project.title}
+                      id={`${sectionId}-project-${index}`}
+                      className={index === visibleProjects.length - 1 && visibleProjects.length % 2 !== 0 ? "md:col-span-2" : ""}
+                    >
                       <ProjectCard {...project} />
                     </div>
                   ))}
@@ -70,10 +84,10 @@ export default function Projects() {
                   <div className="mt-6 flex justify-center">
                     <button
                       type="button"
-                      onClick={() => showMoreProjects(section.title, section.projects.length)}
+                      onClick={() => showMoreProjects(section.title, section.projects.length, `${sectionId}-project-${visibleCount}`)}
                       className="rounded-full border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
                     >
-                      Show more
+                      Show {Math.min(PROJECTS_PER_CLICK, section.projects.length - visibleCount)} more
                     </button>
                   </div>
                 )}
