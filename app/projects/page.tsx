@@ -5,14 +5,27 @@ import ProjectCard from "../components/ProjectCard";
 import { projectSections } from "../data/projects";
 
 const INITIAL_VISIBLE_PROJECTS = 2;
+const PROJECTS_PER_CLICK = 2;
 
 export default function Projects() {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [visibleProjectCountBySection, setVisibleProjectCountBySection] = useState<Record<string, number>>({});
 
-  const toggleSection = (title: string) => {
-    setExpandedSections((current) => ({
+  const showMoreProjects = (title: string, totalProjects: number) => {
+    setVisibleProjectCountBySection((current) => {
+      const currentCount = current[title] ?? INITIAL_VISIBLE_PROJECTS;
+      const nextCount = Math.min(currentCount + PROJECTS_PER_CLICK, totalProjects);
+
+      return {
+        ...current,
+        [title]: nextCount,
+      };
+    });
+  };
+
+  const showLessProjects = (title: string) => {
+    setVisibleProjectCountBySection((current) => ({
       ...current,
-      [title]: !current[title],
+      [title]: INITIAL_VISIBLE_PROJECTS,
     }));
   };
 
@@ -27,9 +40,11 @@ export default function Projects() {
 
         <div className="space-y-12">
           {projectSections.map((section) => {
-            const isExpanded = Boolean(expandedSections[section.title]);
-            const visibleProjects = isExpanded ? section.projects : section.projects.slice(0, INITIAL_VISIBLE_PROJECTS);
-            const hasMoreProjects = section.projects.length > INITIAL_VISIBLE_PROJECTS;
+            const visibleCount = Math.min(visibleProjectCountBySection[section.title] ?? INITIAL_VISIBLE_PROJECTS, section.projects.length);
+            const visibleProjects = section.projects.slice(0, visibleCount);
+            const hasMoreProjects = section.projects.length > visibleCount;
+            const hasHiddenProjects = section.projects.length > INITIAL_VISIBLE_PROJECTS;
+            const isExpanded = visibleCount > INITIAL_VISIBLE_PROJECTS;
 
             return (
               <section key={section.title}>
@@ -49,11 +64,18 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {hasMoreProjects && (
+                {hasHiddenProjects && (
                   <div className="mt-6 flex justify-center">
                     <button
                       type="button"
-                      onClick={() => toggleSection(section.title)}
+                      onClick={() => {
+                        if (hasMoreProjects) {
+                          showMoreProjects(section.title, section.projects.length);
+                          return;
+                        }
+
+                        showLessProjects(section.title);
+                      }}
                       className="rounded-full border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
                     >
                       {isExpanded ? "Show less" : "Show more"}
