@@ -64,21 +64,26 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {hasHiddenProjects && (
+                {hasMoreProjects && (
                   <div className="mt-6 flex justify-center">
                     <button
                       type="button"
-                      onClick={() => {
-                        if (hasMoreProjects) {
-                          showMoreProjects(section.title, section.projects.length);
-                          return;
-                        }
-
-                        showLessProjects(section.title);
-                      }}
+                      onClick={() => showMoreProjects(section.title, section.projects.length)}
                       className="rounded-full border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
                     >
-                      {isExpanded ? "Show less" : "Show more"}
+                      Show more
+                    </button>
+                  </div>
+                )}
+
+                {isExpanded && !hasMoreProjects && (
+                  <div className="mt-6 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => showLessProjects(section.title)}
+                      className="rounded-full border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
+                    >
+                      Show less
                     </button>
                   </div>
                 )}
