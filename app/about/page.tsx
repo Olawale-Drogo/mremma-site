@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Footer from "../components/Footer";
 
 const profiles = [
   {
@@ -38,7 +39,8 @@ export default function About() {
     profiles[(activeIndex + offset + profiles.length) % profiles.length];
 
   return (
-    <main className="min-h-[calc(100vh-81px)] overflow-hidden bg-[#f2f2f0] px-6 py-8 text-[#171717] sm:px-10 sm:py-12">
+    <>
+      <main className="min-h-[calc(100vh-81px)] overflow-hidden bg-[#f2f2f0] px-6 py-8 text-[#171717] sm:px-10 sm:py-12">
       <div className="mx-auto flex min-h-[calc(100vh-145px)] max-w-[1080px] flex-col items-center justify-between">
         <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-[#171717] shadow-sm">
           <a href="mailto:hello@mremma.com" aria-label="Send email" className="flex h-7 w-7 items-center justify-center rounded-lg text-sm transition-transform hover:scale-110">@</a>
@@ -72,7 +74,9 @@ export default function About() {
           <button type="button" onClick={previous} aria-label="Previous skill" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-xl text-[#c5c5c3] shadow-sm transition-colors hover:bg-[#171717] hover:text-white">←</button>
           <button type="button" onClick={next} aria-label="Next skill" className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-xl text-[#171717] shadow-sm transition-colors hover:bg-[#171717] hover:text-white">→</button>
         </div>
-      </div>
-    </main>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

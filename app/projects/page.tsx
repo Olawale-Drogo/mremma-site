@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Footer from "../components/Footer";
 import ProjectCard from "../components/ProjectCard";
 import { projectSections } from "../data/projects";
 
@@ -30,8 +31,9 @@ export default function Projects() {
   };
 
   return (
-    <main className="py-8 sm:py-12">
-      <div className="page-shell">
+    <>
+      <main className="py-8 sm:py-12">
+        <div className="page-shell">
         <header className="section-header px-3 text-center sm:py-4">
           <p className="eyebrow">Selected work</p>
           <h1 className="text-4xl font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">Projects</h1>
@@ -91,7 +93,9 @@ export default function Projects() {
             );
           })}
         </div>
-      </div>
-    </main>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
