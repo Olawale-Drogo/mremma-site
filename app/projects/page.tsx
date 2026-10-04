@@ -87,7 +87,7 @@ export default function Projects() {
                       onClick={() => showMoreProjects(section.title, section.projects.length, `${sectionId}-project-${visibleCount}`)}
                       className="rounded-full border border-[var(--border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent-strong)]"
                     >
-                      Show {Math.min(PROJECTS_PER_CLICK, section.projects.length - visibleCount)} more
+                      Show more
                     </button>
                   </div>
                 )}
