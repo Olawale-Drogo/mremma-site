@@ -1,27 +1,25 @@
 const footerLinks = [
-  "Home",
-  "About",
-  "Courses",
-  "Certifications",
-  "Interview Prep",
-  "Free Resources",
-  "Contact",
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Consulting", href: "/consulting" },
+  { label: "Contact", href: "mailto:hello@mremma.com" },
 ];
 
 const socialStyles = [
-  "bg-[#e63c3c]",
   "bg-[#0a66c2]",
+  "bg-[#171717]",
   "bg-[#ff2a2a]",
   "bg-[#c13584]",
   "bg-[#7a3ff2]",
 ];
 
 const socialLinks = [
-  { label: "X", href: "#" },
-  { label: "in", href: "#" },
-  { label: "yt", href: "#" },
-  { label: "ig", href: "#" },
-  { label: "gh", href: "#" },
+  { label: "in", href: "https://www.linkedin.com", ariaLabel: "LinkedIn" },
+  { label: "gh", href: "https://github.com", ariaLabel: "GitHub" },
+  { label: "mail", href: "mailto:hello@mremma.com", ariaLabel: "Email" },
+  { label: "ig", href: "https://www.instagram.com", ariaLabel: "Instagram" },
+  { label: "x", href: "https://x.com", ariaLabel: "X" },
 ];
 
 export default function Footer() {
@@ -48,9 +46,9 @@ export default function Footer() {
           <h3 className="text-2xl font-semibold uppercase tracking-wide text-[#171717] sm:text-3xl">EXPLORE</h3>
           <ul className="mt-6 space-y-3 text-base text-[#374151] sm:text-sm">
             {footerLinks.map((link) => (
-              <li key={link}>
-                <a href="#" className="transition-opacity hover:opacity-80">
-                  {link}
+              <li key={link.label}>
+                <a href={link.href} className="transition-opacity hover:opacity-80">
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -64,7 +62,9 @@ export default function Footer() {
               <a
                 key={item.label}
                 href={item.href}
-                aria-label={item.label}
+                aria-label={item.ariaLabel}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
                 className={`flex h-9 w-9 items-center justify-center rounded-md text-xs font-bold text-white shadow-sm sm:h-10 sm:w-10 sm:text-sm ${socialStyles[index]}`}
               >
                 {item.label}

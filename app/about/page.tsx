@@ -4,20 +4,20 @@ import { useState } from "react";
 
 const profiles = [
   {
-    name: "King Drogo",
-    skill: "Data Analyst",
+    name: "Mremma",
+    skill: "Data Strategy",
     image:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85",
   },
   {
-    name: "King Drogo",
-    skill: "Dashboard Strategist",
+    name: "Mremma",
+    skill: "Dashboard Design",
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
   },
   {
-    name: "King Drogo",
-    skill: "Business Consultant",
+    name: "Mremma",
+    skill: "Digital Consulting",
     image:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=85",
   },
@@ -41,9 +41,9 @@ export default function About() {
     <main className="min-h-[calc(100vh-81px)] overflow-hidden bg-[#f2f2f0] px-6 py-8 text-[#171717] sm:px-10 sm:py-12">
       <div className="mx-auto flex min-h-[calc(100vh-145px)] max-w-[1080px] flex-col items-center justify-between">
         <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-[#171717] shadow-sm">
-          <a href="mailto:your-email@example.com" aria-label="Send email" className="flex h-7 w-7 items-center justify-center rounded-lg text-sm transition-transform hover:scale-110">@</a>
-          <a href="https://github.com/your-username" aria-label="Open GitHub" className="flex h-7 w-7 items-center justify-center rounded-lg text-sm transition-transform hover:scale-110">&lt;/&gt;</a>
-          <a href="https://linkedin.com/in/your-profile" aria-label="Open LinkedIn" className="flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold transition-transform hover:scale-110">in</a>
+          <a href="mailto:hello@mremma.com" aria-label="Send email" className="flex h-7 w-7 items-center justify-center rounded-lg text-sm transition-transform hover:scale-110">@</a>
+          <a href="https://github.com" aria-label="Open GitHub" className="flex h-7 w-7 items-center justify-center rounded-lg text-sm transition-transform hover:scale-110">&lt;/&gt;</a>
+          <a href="https://www.linkedin.com" aria-label="Open LinkedIn" className="flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold transition-transform hover:scale-110">in</a>
         </div>
 
         <section className="flex w-full flex-1 items-center justify-center py-12" aria-label="Skills carousel">
