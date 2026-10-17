@@ -69,7 +69,7 @@ a {
 }
 
 .page-shell {
-  width: min(1080px, calc(100% - 2rem));
+  width: min(1080px, calc(100% - 1rem));
   margin-inline: auto;
 }
 
